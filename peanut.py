@@ -128,3 +128,5 @@ hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autora
 
 
 st.plotly_chart(hm_zona)
+
+st.dataframe(romox)

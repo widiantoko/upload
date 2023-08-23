@@ -10,6 +10,7 @@ file_01="data/xwh_romo.xlsx"
 wb=openpyxl.load_workbook(file_01)
 df = pd.read_excel(file_01)
 
+st.dataframe(df)
 
 x_loc=[
 "AA.01","AA.02","AA.03","AA.04","AA.05","AA.06","AA.07","AA.08","AA.09",

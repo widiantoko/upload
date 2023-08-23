@@ -19,7 +19,7 @@ for each in romox["batch"]:
 # all values converting to integer data type
 final_list = [i for i in lst]
 romox["batch"]=final_list
-romox["batch"]=romox["batch"].fillna("-")
+romox["batch"]=romox["batch"].fillna("-").astype(str)
 
 
 

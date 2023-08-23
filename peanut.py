@@ -88,9 +88,9 @@ for i, row in romox_join.iterrows():
         hasil1 = ''
         if row['loc'] != row['set_loc']:
             hasil1 = 0
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']>0):
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']!=0):
             hasil1 = 2
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']>0):
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']!=0):
             hasil1 = 3
         else:
              hasil1 = 1

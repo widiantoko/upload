@@ -7,8 +7,8 @@ import openpyxl
 
 file_01='https://github.com/widiantoko/upload/blob/main/data/xwh_romo.xlsx'
 
-openpyxl.load_workbook(file_01)
-
+wb=openpyxl.load_workbook(file_01)
+df = pd.read_excel(file_01)
 
 
 x_loc=[

@@ -136,7 +136,7 @@ hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["
 hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autorange=True, title= '',
                  title_y=0.85)
 
-
+hm_zona.show(config={ 'modeBarButtonsToRemove': ['zoom', 'pan'] })
 
 st.plotly_chart(hm_zona)
 

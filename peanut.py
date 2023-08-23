@@ -19,7 +19,7 @@ for each in romox["batch"]:
 # all values converting to integer data type
 final_list = [i for i in lst]
 romox["batch"]=final_list
-romox["batch"]=romox["batch"].fillna("-").astype(str)
+
 
 
 
@@ -77,7 +77,7 @@ lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
 romox_join= romox_join.fillna(value=np.nan)
 romox_join["bag"] = romox_join["bag"].fillna(0)
-#romox_join["batch"] = romox_join["batch"].fillna("-").astype(str)
+romox_join["batch"] = romox_join["batch"].fillna("-").astype(str)
 
 
 

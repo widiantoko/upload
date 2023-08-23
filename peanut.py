@@ -25,7 +25,7 @@ romox["batch"]=final_list
 
 
 
-warna_bag = {'WMS_n.a.':'#FABEC0',
+warna_bag = {'WMS_n.a.':'#64B5F6',
         'good stock':'#EF9A9A',
         'damage':'#FF8A80',
         'empty':'#1DE9B6'}

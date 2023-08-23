@@ -1,16 +1,25 @@
 import pandas as pd
 import streamlit as st
 import openpyxl
+import plotly.graph_objects as go
+import numpy as np
 
-#df=pd.read_csv('intracity_jan_jul_2022.csv')
-#df=pd.read_csv('https://github.com/widiantoko/upload/blob/main/intracity_jan_jul_2022.csv')
+st.set_page_config(page_title="Storage", layout='wide')
 
 file_01="data/xwh_romo.xlsx"
 
 wb=openpyxl.load_workbook(file_01)
-df = pd.read_excel(file_01)
+romox = pd.read_excel(file_01)
 
-st.dataframe(df)
+
+warna_bag = {'WMS_n.a.':'#64B5F6',
+        'good stock':'#EF9A9A',
+        'damage':'#FF8A80',
+        'empty':'#1DE9B6'}
+
+
+ticktext=['WMS_n.a.', 'good stock', 'damage', 'empty']
+
 
 x_loc=[
 "AA.01","AA.02","AA.03","AA.04","AA.05","AA.06","AA.07","AA.08","AA.09",
@@ -50,4 +59,70 @@ lokasi['zona'] = lokasi['set_loc'].str[:2]
 lokasi['x_loc'] = lokasi['set_loc'].str[:5]
 lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
-st.dataframe(lokasi)
+
+
+romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
+romox_join= romox_join.fillna(value=np.nan)
+romox_join["bag"] = romox_join["bag"].fillna(0).astype(int)
+romox_join["batch"] = romox_join["batch"].fillna(0).astype(int)
+
+
+for i, row in romox_join.iterrows():
+        hasil = ''
+        if row['loc'] != row['set_loc']:
+            hasil = 'WMS_n.a.'
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']>0):
+            hasil = 'good stock'
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']>0):
+            hasil = 'damage'
+        else:
+             hasil = "empty"
+        
+        romox_join.at[i, 'grup'] = hasil
+        
+romox_join["warna"]=[warna_bag[x] for x in romox_join["grup"]]
+
+
+for i, row in romox_join.iterrows():
+        hasil1 = ''
+        if row['loc'] != row['set_loc']:
+            hasil1 = 0
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']>0):
+            hasil1 = 2
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']>0):
+            hasil1 = 3
+        else:
+             hasil1 = 1
+        
+        romox_join.at[i, 'Z_value'] = hasil1
+
+romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['batch'].astype(str)
+
+
+
+new_title = '<p style="font-family:sans-serif; font-size: 20px;">Storage Location</p>'
+st.markdown(new_title, unsafe_allow_html=True)
+
+
+
+pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
+pilihan=st.radio("", key="visibility", options= pilih_zona, label_visibility= "collapsed",
+                 horizontal=True, disabled=False,)
+
+romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
+
+
+        
+hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
+                           customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["bag"],texttemplate="%{text}",
+                           textfont={"size":10},
+                           colorscale=romox_join["warna"], showscale=False,
+                           hovertemplate="%{x}.%{y} - %{customdata} <extra></extra>"))
+
+
+hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autorange=True, title= '',
+                 title_y=0.85)
+
+
+
+st.plotly_chart(hm_zona)

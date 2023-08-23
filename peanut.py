@@ -10,7 +10,7 @@ file_01="data/xwh_romo.xlsx"
 
 wb=openpyxl.load_workbook(file_01)
 romox = pd.read_excel(file_01)
-romox["batch"]=romox["batch"].astype(int)
+romox["batch"]=romox["batch"].astype(str)
 
 
 warna_bag = {'WMS_n.a.':'#64B5F6',

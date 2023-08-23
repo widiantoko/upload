@@ -17,7 +17,7 @@ for each in romox["batch"]:
     lst.append(str(each).split('.')[0])
   
 # all values converting to integer data type
-final_list = [int(i) for i in lst]
+final_list = [i for i in lst]
 romox["batch"]=final_list
 
 

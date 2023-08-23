@@ -5,7 +5,10 @@ import openpyxl
 #df=pd.read_csv('intracity_jan_jul_2022.csv')
 #df=pd.read_csv('https://github.com/widiantoko/upload/blob/main/intracity_jan_jul_2022.csv')
 
-#st.dataframe(df.head(10))
+file_01='https://github.com/widiantoko/upload/blob/main/data/xwh_romo.xlsx'
+
+openpyxl.load_workbook(file_01)
+
 
 
 x_loc=[

@@ -10,7 +10,18 @@ file_01="data/xwh_romo.xlsx"
 
 wb=openpyxl.load_workbook(file_01)
 romox = pd.read_excel(file_01)
-romox["batch"]=romox["batch"].astype(str)
+
+
+lst = []
+for each in romox["batch"]:
+    lst.append(str(each).split('.')[0])
+  
+# all values converting to integer data type
+final_list = [int(i) for i in lst]
+romox["batch"]=final_list
+
+
+
 
 
 warna_bag = {'WMS_n.a.':'#64B5F6',
@@ -130,4 +141,4 @@ hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autora
 st.plotly_chart(hm_zona)
 
 st.dataframe(romox)
-st.text(romox.info())
+print(romox.info())

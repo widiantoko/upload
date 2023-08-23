@@ -64,7 +64,7 @@ lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
 romox_join= romox_join.fillna(value=np.nan)
 romox_join["bag"] = romox_join["bag"].fillna(0)
-romox_join["batch"] = romox_join["batch"].fillna(0)
+romox_join["batch"] = romox_join["batch"].fillna(0).astype("str")
 
 
 

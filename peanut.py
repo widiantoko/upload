@@ -65,16 +65,16 @@ romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer'
 romox_join= romox_join.fillna(value=np.nan)
 romox_join["bag"] = romox_join["bag"].fillna(0)
 romox_join["batch"] = romox_join["batch"].fillna(0)
-romox_join[["bag", "batch"]] = romox_join[["bag", "batch"]].apply(pd.to_numeric)
+
 
 
 for i, row in romox_join.iterrows():
         hasil = ''
         if row['loc'] != row['set_loc']:
             hasil = 'WMS_n.a.'
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']>=1):
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']!=0):
             hasil = 'good stock'
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']>=1):
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']!=0):
             hasil = 'damage'
         else:
              hasil = "empty"

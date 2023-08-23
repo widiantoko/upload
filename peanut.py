@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import openpyxl
-import plotly.graph_objects as go
+from plotly import graph_objects as go
 import numpy as np
 
 st.set_page_config(page_title="Storage", layout='wide')

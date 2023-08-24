@@ -13,12 +13,12 @@ romox = pd.read_excel("data/22agustus.xlsx")
 
 
 lst = []
-for each in romox["batch"]:
+for each in romox["lotno"]:
     lst.append(str(each).split('.')[0])
   
 # all values converting to integer data type
 final_list = [i for i in lst]
-romox["batch"]=final_list
+romox["lotno"]=final_list
 
 
 

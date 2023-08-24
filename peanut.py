@@ -40,8 +40,8 @@ y_loc=[
 "1A","1B","1C","1D","1E","1F","1G",
 "1H","1I","1J","1K","1L","1M"]
 
-temp_xy = [(a, b) for a in x_loc for b in y_loc]
-xy_cont=[x+"."+y for (x, y) in temp_xy]
+
+
 
 dpn=["AA","AB", "AC", "AD", "AE", "AF"]
 tgh=["01","02","03", "04","05","06","07","08","09","10","11",

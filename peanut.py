@@ -127,7 +127,7 @@ romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
 
         
 hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
-                           customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["bag"],texttemplate="%{text}",
+                           customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
                            colorscale=romox_join["warna"], showscale=False,
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))

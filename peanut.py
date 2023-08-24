@@ -38,12 +38,18 @@ ticktext=['WMS_n.a.', 'good stock', 'damage', 'empty']
 
 y_loc=[
 "1A","1B","1C","1D","1E","1F","1G",
-"1H","1I","1J","1K","1L","1M"]
+"1H","1I","1J","1K","1L","1M","1N"]
 
 
 
 
-dpn=["AA","AB", "AC", "AD", "AE", "AF"]
+
+dpn=["AA","AB", "AC", "AD", "AE", "AF",
+     "AG", "AH", "BA","BB","BC","BD","BE","BF",
+    "CA","CB","CC","CD","CE","CF"]
+
+
+
 tgh=["01","02","03", "04","05","06","07","08","09","10","11",
      "12","13","14","15","16","17","18","19","20","21","22","23",
      "24","25","26","27","28","29","30","31","32","33","34","35",
@@ -69,8 +75,8 @@ lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
 romox_join= romox_join.fillna(value=np.nan)
-romox_join["bag"] = romox_join["bag"].fillna(0)
-romox_join["batch"] = romox_join["batch"].fillna("-").astype(str)
+romox_join["qtybag"] = romox_join["qtybag"].fillna(0)
+romox_join["lotno"] = romox_join["lotno"].fillna("-").astype(str)
 
 
 
@@ -78,9 +84,9 @@ for i, row in romox_join.iterrows():
         hasil = ''
         if row['loc'] != row['set_loc']:
             hasil = 'WMS_n.a.'
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']!=0):
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['qtybag']!=0):
             hasil = 'good stock'
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']!=0):
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['qtybag']!=0):
             hasil = 'damage'
         else:
              hasil = "empty"
@@ -94,20 +100,20 @@ for i, row in romox_join.iterrows():
         hasil1 = ''
         if row['loc'] != row['set_loc']:
             hasil1 = 0
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['bag']!=0):
-            hasil1 = 2
-        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['bag']!=0):
-            hasil1 = 3
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['qtybag']!=0):
+            hasil1 = 10
+        elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['qtybag']!=0):
+            hasil1 = 5
         else:
-             hasil1 = 1
+             hasil1 = 3
         
         romox_join.at[i, 'Z_value'] = hasil1
 
-romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['batch'].astype(str)
+romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)
 
 
 
-new_title = '<p style="font-family:sans-serif; font-size: 20px;">Storage Location</p>'
+new_title = '<p style="font-family:sans-serif; font-size: 20px;">Storage Location Control</p>'
 st.markdown(new_title, unsafe_allow_html=True)
 
 
@@ -130,7 +136,8 @@ hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["
 hm_zona.update_layout(width=1250, height=500, yaxis_autorange=True, xaxis_autorange=True, title= '',
                  title_y=0.85)
 
-hm_zona.show(config={ 'modeBarButtonsToRemove': ['zoom', 'pan'] })
+
 
 st.plotly_chart(hm_zona)
 
+st.text("Sumber Data: WMS Romokalisari 22 Agustus 2023")

@@ -8,8 +8,8 @@ st.set_page_config(page_title="Storage", layout='wide')
 
 file_01="data/xwh_romo.xlsx"
 
-wb=openpyxl.load_workbook(file_01)
-romox = pd.read_excel(file_01)
+#wb=openpyxl.load_workbook(file_01)
+romox = pd.read_excel("data/22agustus.xlsx")
 
 
 lst = []

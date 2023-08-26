@@ -126,7 +126,7 @@ with col1:
     romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
 
 
-    Total = romox_join_zona.groupby['qtybag'].sum()
+    Total = romox_join_zona['qtybag'].sum()
     st.markdown(Total)
 
 

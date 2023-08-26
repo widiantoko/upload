@@ -119,25 +119,34 @@ st.markdown(new_title, unsafe_allow_html=True)
 
 
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
-pilihan=st.radio("", key="visibility", options= pilih_zona, label_visibility= "collapsed",
-                 horizontal=True, disabled=False,)
-
-romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
 
 
+
+col1, col2 = st.columns([1, 12], gap="small")
+
+with col1:
+    
+    pilihan=st.selectbox(label="**Location:**",options= pilih_zona)
+
+
+
+with col2:
+   
+    romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
         
-hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
+    hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
                            colorscale=romox_join["warna"], showscale=False,
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
 
 
-hm_zona.update_layout(width=1250, height=500, yaxis_autorange=True, xaxis_autorange=True, title= '',
-                 title_y=0.85)
+    hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autorange=True, title= f"Storage Location Control - {pilihan}",
+                 title_y=0.99, title_font_size=20, title_yanchor="top", margin_t=50)
 
 
+    
+    st.plotly_chart(hm_zona)
 
-st.plotly_chart(hm_zona)
 
 st.text("Sumber Data: WMS Romokalisari 22 Agustus 2023")

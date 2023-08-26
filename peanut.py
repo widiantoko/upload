@@ -128,12 +128,12 @@ with col1:
 
     x_sum = romox_join_zona['qtybag'].sum()
 
-    fontsize = 20
+    
    
     test= f"""<p style=' color: #3288bd; text-align: center;
-                        font-size: {fontsize}px; 
+                        font-size: 18px; 
                         border-radius: 8px; 
-                        border: 3px solid #3288bd;
+                        border: 2px solid #3288bd;
                         padding-left: 0px; 
                         padding-top: 25px; 
                         padding-bottom: 25px;

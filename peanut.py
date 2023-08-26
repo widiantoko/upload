@@ -126,7 +126,7 @@ with col1:
     romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
 
 
-    x_sum = romox_join_zona['qtybag'].sum()
+    x_sum = int(romox_join_zona['qtybag'].sum())
 
     
    

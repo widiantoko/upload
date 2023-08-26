@@ -1,8 +1,14 @@
 import pandas as pd
 import streamlit as st
-import openpyxl
 import plotly.graph_objects as go
 import numpy as np
+import pandas_bokeh
+pandas_bokeh.output_notebook()
+from bokeh.plotting import figure
+
+from bokeh.models import ColumnDataSource, Range1d, LabelSet
+
+
 
 st.set_page_config(page_title="Storage", layout='wide')
 
@@ -109,29 +115,72 @@ romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].as
 
 
 new_title = '<p style="font-family:sans-serif; font-size: 20px;">Storage Location Control </p>'
-st.markdown(new_title, unsafe_allow_html=True)
+#st.markdown(new_title, unsafe_allow_html=True)
  
-
-
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
-pilihan=st.radio("", key="visibility", options= pilih_zona, label_visibility= "collapsed",
-                 horizontal=True, disabled=False,)
-
-romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
 
 
+
+col1, col2 = st.columns([1, 12], gap="small")
+
+with col1:
+    
+    pilihan=st.selectbox(label="**Location:**",options= pilih_zona)
+
+
+
+with col2:
+   
+    romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
         
-hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
+    hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
                            colorscale=romox_join["warna"], showscale=False,
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
 
 
-hm_zona.update_layout(width=1250, height=500, yaxis_autorange=True, xaxis_autorange=True, title= '',
-                 title_y=0.85)
+    hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autorange=True, title= f"Storage Location Control - {pilihan}",
+                 title_y=0.99, title_font_size=20, title_yanchor="top", margin_t=50)
 
 
-st.plotly_chart(hm_zona)
+    
+    st.plotly_chart(hm_zona)
 
-st.text("Sumber Data: WMS Romokalisari 22 Agustus 2023")
+    st.text("Sumber Data: WMS Romokalisari 22 Agustus 2023")
+
+
+aging=romox_join[romox_join.grup=="good stock"]
+
+
+import datetime 
+
+
+today = pd.Timestamp(datetime.date.today())
+
+aging['today']=today
+aging['diff_days'] = (aging['expired_new'] - aging['today']) / np.timedelta64(1, 'D')
+aging_sort = aging.sort_values(by=['diff_days']).head(50)
+
+st.dataframe(aging_sort)
+
+
+
+color_don=['#ef9a9a','#f48fb1','#ce93d8','#b39ddb','#9fa8da','#90caf9',
+'#81d4fa','#80deea','#80cbc4','#a5d6a7','#c5e1a5',
+'#e6ee9c','#fff59d','#ffe082','#ffcc80','#ffab91',
+'#bcaaa4','#e57373','#f06292','#ba68c8','#9575cd',
+'#7986cb','#64b5f6','#4fc3f7','#4dd0e1','#4db6ac',
+'#81c784','#aed581','#dce775','#fff176','#ffd54f',
+'#ffb74d','#ff8a65','#a1887f','#ef5350','#ec407a',
+'#ab47bc','#7e57c2','#5c6bc0','#42a5f5','#29b6f6',
+'#26c6da','#26a69a','#66bb6a','#9ccc65','#d4e157',
+'#ffee58','#ffca28','#ffa726','#ff7043','#8d6e63']
+
+
+
+
+diff_sort=sorted(set(aging_sort["diff_days"]))
+st.text(diff_sort)
+
+

@@ -112,14 +112,7 @@ for i, row in romox_join.iterrows():
 romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)
 
 
-
-new_title = '<p style="font-family:sans-serif; font-size: 20px;">Storage Location Control</p>'
-st.markdown(new_title, unsafe_allow_html=True)
-
-
-
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
-
 
 
 col1, col2 = st.columns([1, 12], gap="small")

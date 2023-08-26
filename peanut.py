@@ -113,7 +113,8 @@ romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].as
 
 
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
-romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
+
+
 
 
 col1, col2 = st.columns([1, 12], gap="small")
@@ -122,14 +123,17 @@ with col1:
     
     pilihan=st.selectbox(label="**Location:**",options= pilih_zona)
 
-    Total = df.groupby['MyColumn'].sum()
+    romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
+
+
+    Total = romox_join_zona.groupby['qtybag'].sum()
+    st.markdown(Total)
 
 
 
 with col2:
    
-    romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
-        
+            
     hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},

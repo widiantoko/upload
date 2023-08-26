@@ -126,8 +126,25 @@ with col1:
     romox_join_zona=romox_join[romox_join.zona == pilihan].reset_index(drop=True)
 
 
-    Total = romox_join_zona['qtybag'].sum()
-    st.markdown(Total)
+    x_sum = romox_join_zona['qtybag'].sum()
+
+    fontsize = 30
+   
+    test= f"""<p style=' color: #3288bd; text-align: center;
+                        font-size: {fontsize}px; 
+                        border-radius: 8px; 
+                        border: 5px solid #3288bd;
+                        padding-left: 0px; 
+                        padding-top: 25px; 
+                        padding-bottom: 25px;
+                        line-height:3px;'>
+                        {x_sum} Kiriman
+                        """
+
+    st.markdown(test, unsafe_allow_html=True)
+
+
+
 
 
 

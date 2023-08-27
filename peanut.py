@@ -23,8 +23,6 @@ romox["lotno"]=final_list
 
 
 
-
-
 warna_bag = {'WMS_n.a.':'#64B5F6',
         'good stock':'#EF9A9A',
         'damage':'#FF8A80',

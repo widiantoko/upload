@@ -13,7 +13,18 @@ from bokeh.models import ColumnDataSource, Range1d, LabelSet
 st.set_page_config(page_title="Storage", layout='wide')
 
 
-romox = pd.read_excel("data/23_08_23_update.xlsx")
+romox_a = pd.read_excel("data/23_08_23.xlsx")
+
+grup_bag1=romox_a.groupby(['typedesc'], as_index =False)['qtybag'].sum()
+#grup_bag2=romox_a.groupby(['typedesc', 'c2'], as_index =False)['qtybag'].sum()
+
+
+st.table(grup_bag1)
+
+
+
+
+romox=romox_a[romox_a.c2!="QI"]
 romox["c3"]=romox["c3"].astype(str)
 
 

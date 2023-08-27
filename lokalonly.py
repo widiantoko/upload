@@ -27,7 +27,6 @@ for i, row in romox.iterrows():
         romox.at[i, 'c3'] = hasil2
 
 
-
 lst = []
 for each in romox["lotno"]:
     lst.append(str(each).split('.')[0])
@@ -35,8 +34,6 @@ for each in romox["lotno"]:
 # all values converting to integer data type
 final_list = [i for i in lst]
 romox["lotno"]=final_list
-
-
 
 
 ticktext=['WMS_n.a.', 'good stock', 'damage', 'empty']

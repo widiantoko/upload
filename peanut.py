@@ -34,11 +34,6 @@ romox["lotno"]=final_list
 
 
 
-warna_bag = {'WMS_n.a.':'#64B5F6',
-        'good stock':'#EF9A9A',
-        'damage':'#FF8A80',
-        'empty':'#1DE9B6'}
-
 
 ticktext=['WMS_n.a.', 'good stock', 'damage', 'empty']
 
@@ -84,21 +79,29 @@ for i, row in romox_join.iterrows():
         
         romox_join.at[i, 'grup'] = hasil
         
-romox_join["warna"]=[warna_bag[x] for x in romox_join["grup"]]
+
+color_continuous_scale=[(0.00, "#64B5F6"), (0.25, "#64B5F6"),
+                        (0.25, "#EF9A9A"), (0.50, "#EF9A9A"),
+                        (0.50, "#FF8A80"), (0.75, "#FF8A80"),
+                        (0.75, "#1DE9B6"),  (1.00, "#1DE9B6")]
+
 
 
 for i, row in romox_join.iterrows():
         hasil1 = ''
         if row['loc'] != row['set_loc']:
-            hasil1 = 0
+            hasil1 = 0.4
         elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['qtybag']!=0):
-            hasil1 = 10
+            hasil1 = 0.2
         elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['qtybag']!=0):
-            hasil1 = 5
+            hasil1 = 0.8
         else:
-             hasil1 = 3
+             hasil1 = 0.6
         
         romox_join.at[i, 'Z_value'] = hasil1
+
+
+
 
 romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)
 
@@ -137,15 +140,13 @@ with col1:
 
 
 
-
-
 with col2:
    
             
     hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
-                           colorscale=romox_join["warna"], showscale=False,
+                           colorscale=color_continuous_scale, showscale=False,
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
 
 

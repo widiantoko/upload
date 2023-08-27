@@ -10,7 +10,7 @@ st.set_page_config(page_title="Storage", layout='wide')
 
 
 romox = pd.read_excel("data/23_08_23_update.xlsx")
-
+romox["c3"]=romox["c3"].astype(str)
 
 lst = []
 for each in romox["lotno"]:

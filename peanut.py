@@ -12,6 +12,17 @@ st.set_page_config(page_title="Storage", layout='wide')
 romox = pd.read_excel("data/23_08_23_update.xlsx")
 romox["c3"]=romox["c3"].astype(str)
 
+
+for i, row in romox.iterrows():
+        hasil2 = ''
+        if len(row['c3']) == 1:
+            hasil2 = "0"+row["c3"]
+        else:
+             hasil2 = row["c3"]
+        
+        romox.at[i, 'c3'] = hasil2
+
+
 lst = []
 for each in romox["lotno"]:
     lst.append(str(each).split('.')[0])

@@ -18,10 +18,13 @@ romox_a = pd.read_excel("data/23_08_23.xlsx")
 grup_bag1=romox_a.groupby(['typedesc'], as_index =False)['qtybag'].sum()
 #grup_bag2=romox_a.groupby(['typedesc', 'c2'], as_index =False)['qtybag'].sum()
 
+with open('style.css') as f:
+  st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.table(grup_bag1)
 
-
+col_a, col_b, col_c = st.columns(3)
+col_b.metric("Good Stock", int(grup_bag1.loc[1,'qtybag']))
+col_c.metric("Damage", int(grup_bag1.loc[0,'qtybag']))
 
 
 romox=romox_a[romox_a.c2!="QI"]
@@ -116,8 +119,6 @@ romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].as
 
 
 
-new_title = '<p style="font-family:sans-serif; font-size: 20px;">Storage Location Control </p>'
-
  
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
@@ -137,7 +138,7 @@ with col1:
     test= f"""<p style=' color: #3288bd; text-align: center;
                         font-size: 18px; 
                         border-radius: 8px; 
-                        border: 2px solid #3288bd;
+                        border: 1.5px solid #3288bd;
                         padding-left: 0px; 
                         padding-top: 25px; 
                         padding-bottom: 25px;
@@ -175,7 +176,6 @@ aging=romox_join[romox_join.grup=="good stock"]
 
 
 import datetime 
-
 
 today = pd.Timestamp(datetime.date.today())
 

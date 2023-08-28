@@ -90,25 +90,44 @@ for i, row in romox_join.iterrows():
         
 
 
-color_continuous_scale=[(0.00, "#64B5F6"), (0.25, "#64B5F6"),
+color_scale=[(0, "#64B5F6"), (0.25, "#64B5F6"),
                         (0.25, "#EF9A9A"), (0.50, "#EF9A9A"),
-                        (0.50, "#FF8A80"), (0.75, "#FF8A80"),
-                        (0.75, "#1DE9B6"),  (1.00, "#1DE9B6")]
+                        (0.50, "#1DE9B6"),  (0.75, "#1DE9B6"),
+                        (0.75, "#FFF176"), (1, "#FFF176")
+                        ]
+
+
+
+color_new=[
+        [0, "#64B5F6"],
+        [0.25, "#64B5F6"],
+        [0.25, "#EF9A9A"],
+        [0.5, "#EF9A9A"],
+        [0.5, "#1DE9B6"],
+        [0.75, "#1DE9B6"],
+        [0.75, "#FFCC80"],
+        [1, "#FFCC80"]]
+
+
+       
+
+
+
 
 
 
 for i, row in romox_join.iterrows():
         hasil1 = ''
         if row['loc'] != row['set_loc']:
-            hasil1 = 0.4
+            hasil1 = 2
         elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['qtybag']!=0):
-            hasil1 = 0.2
+            hasil1 = 0
         elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['qtybag']!=0):
-            hasil1 = 0.8
+            hasil1 = 3
         else:
-             hasil1 = 0.6
+             hasil1 = 1
         
-        romox_join.at[i, 'Z_value'] = hasil1
+        romox_join.at[i, 'z'] = hasil1
 
 romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)
 
@@ -145,20 +164,23 @@ with col1:
 
 
 
-
 with col2:
    
-    
-        
-    hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
+            
+    hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["z"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
-                           colorscale=color_continuous_scale, showscale=False,
+                           colorscale=color_new, showscale=False, 
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
 
 
     hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autorange=True, title= f"Storage Location Control - {pilihan}",
-                 title_y=0.99, title_font_size=20, title_yanchor="top", margin_t=50)
+                 title_y=0.99, title_font_size=20, title_yanchor="top", margin_t=50, showlegend=True)
+
+
+
+
+
 
 
     
@@ -169,6 +191,7 @@ with col2:
 
 aging=romox_join[romox_join.grup=="good stock"]
 
+zona_fd=romox_join[romox_join.grup=="WMS_n.a."]
 
 import datetime 
 
@@ -178,8 +201,7 @@ aging['today']=today
 aging['diff_days'] = (aging['expired_new'] - aging['today']) / np.timedelta64(1, 'D')
 aging_sort = aging.sort_values(by=['diff_days']).head(50)
 
-st.dataframe(aging_sort)
-
+st.dataframe(zona_fd)
 
 
 color_don=['#ef9a9a','#f48fb1','#ce93d8','#b39ddb','#9fa8da','#90caf9',

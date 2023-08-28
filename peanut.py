@@ -90,13 +90,13 @@ color_continuous_scale=[(0.00, "#64B5F6"), (0.25, "#64B5F6"),
 for i, row in romox_join.iterrows():
         hasil1 = ''
         if row['loc'] != row['set_loc']:
-            hasil1 = 0.4
+            hasil1 = 2
         elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="GOOD STOCK" and row['qtybag']!=0):
-            hasil1 = 0.2
+            hasil1 = 0
         elif (row['loc'] == row['set_loc'] and  row['typedesc'] =="BLOCKED STOCK" and row['qtybag']!=0):
-            hasil1 = 0.8
+            hasil1 = 3
         else:
-             hasil1 = 0.6
+             hasil1 = 1
         
         romox_join.at[i, 'Z_value'] = hasil1
 

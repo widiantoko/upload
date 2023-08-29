@@ -90,11 +90,11 @@ for i, row in romox_join.iterrows():
         
 
 
-color_scale=[(0, "#64B5F6"), (0.25, "#64B5F6"),
-                        (0.25, "#EF9A9A"), (0.50, "#EF9A9A"),
-                        (0.50, "#1DE9B6"),  (0.75, "#1DE9B6"),
-                        (0.75, "#FFF176"), (1, "#FFF176")
-                        ]
+color_scale= [(0.00, "#64B5F6"), (0.25, "#64B5F6"),
+                        (0.25, "#BDBDBD"), (0.50, "#BDBDBD"),
+                        (0.50, "#FF8A80"), (0.75, "#FF8A80"),
+                        (0.75, "#1DE9B6"),  (1.00, "#1DE9B6")] 
+
 
 
 
@@ -109,8 +109,7 @@ color_new=[
         [1, "#FFCC80"]]
 
 
-       
-
+     
 
 
 
@@ -170,7 +169,7 @@ with col2:
     hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["z"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
-                           colorscale=color_new, showscale=False, 
+                           colorscale=color_scale, showscale=False, 
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
 
 

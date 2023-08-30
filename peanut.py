@@ -82,8 +82,8 @@ for i, row in romox_join.iterrows():
 
 color_continuous_scale=[(0.00, "#64B5F6"), (0.25, "#64B5F6"),
                         (0.25, "#BDBDBD"), (0.50, "#BDBDBD"),                   
-                        (0.5, "#1DE9B6"),  (0.75, "#1DE9B6")
-                        (0.75, "#FF8A80"), (1, "#FF8A80"),]
+                        (0.50, "#1DE9B6"),  (0.75, "#1DE9B6"),
+                        (0.75, "#FF8A80"), (1, "#FF8A80")]
 
 
 

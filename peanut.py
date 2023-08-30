@@ -127,7 +127,8 @@ with col1:
     test= f"""<p style=' color: #3288bd; text-align: center;
                         font-size: 18px; 
                         border-radius: 8px; 
-                        border: 2px solid #3288bd;
+                        background-color: #EEEEEE;
+                        border: 2px solid #CCCCCC;
                         padding-left: 0px; 
                         padding-top: 25px; 
                         padding-bottom: 25px;
@@ -137,7 +138,7 @@ with col1:
 
     st.markdown(test, unsafe_allow_html=True)
 
-
+ #border: 2px solid #3288bd;
 
 
 with col2:

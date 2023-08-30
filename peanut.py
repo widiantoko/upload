@@ -128,7 +128,7 @@ with col1:
                         font-size: 18px; 
                         border-radius: 8px; 
                         background-color: #f0f2f6;
-                        border: 2px solid #ff2b2b;
+                        border: 1px solid #ff2b2b;
                         padding-left: 0px; 
                         padding-top: 25px; 
                         padding-bottom: 25px;

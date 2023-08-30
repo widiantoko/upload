@@ -124,10 +124,10 @@ with col1:
 
     
    
-    test= f"""<p style=' color: #3288bd; text-align: center;
+    test= f"""<p style=' color: #ff2b2b; text-align: center;
                         font-size: 18px; 
                         border-radius: 8px; 
-                        background-color: #EEEEEE;
+                        background-color: #f0f2f6;
                         border: 2px solid #CCCCCC;
                         padding-left: 0px; 
                         padding-top: 25px; 

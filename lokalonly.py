@@ -170,7 +170,7 @@ with col2:
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
                            colorscale=color_scale, showscale=False, 
-                           hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
+                           hovertemplate="<br>%{x}.%{y} : %{customdata} <extra></extra>"))
 
 
     hm_zona.update_layout(width=1200, height=500, yaxis_autorange=True, xaxis_autorange=True, title= f"Storage Location Control - {pilihan}",

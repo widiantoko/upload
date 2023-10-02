@@ -59,7 +59,7 @@ lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
 
 st.dataframe(romox)
-
+st.text(romox.dtypes())
 
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
 romox_join= romox_join.fillna(value=np.nan)

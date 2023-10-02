@@ -147,7 +147,7 @@ with col2:
     hm_zona = go.Figure(go.Heatmap(x=romox_join_zona["x_loc"], y = romox_join_zona["y_loc"], z=romox_join_zona["Z_value"],
                            customdata=romox_join_zona["con"], xgap=1.5, ygap=1.5,text=romox_join_zona["qtybag"],texttemplate="%{text}",
                            textfont={"size":10},
-                           colorscale=color_continuous_scale, showscale=True,
+                           colorscale=color_continuous_scale, showscale=False,
                            hovertemplate="%{x}.%{y} : %{customdata} <extra></extra>"))
 
 

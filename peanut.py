@@ -58,7 +58,7 @@ lokasi['x_loc_new'] = lokasi['set_loc'].str[:5]
 lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
 
-st.dataframe(lokasi)
+st.dataframe(romox)
 
 
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')

@@ -4,12 +4,12 @@ import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
 
-st.set_page_config(page_title="Storage", layout='wide')
+st.set_page_config(page_title="Romokalisari", layout='wide')
 
 
 
 
-romox = pd.read_excel("data/23_08_23_update.xlsx")
+romox = pd.read_excel("data/29_09_23_goodstock.xlsx")
 romox["c3"]=romox["c3"].astype(str)
 
 

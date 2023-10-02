@@ -112,7 +112,7 @@ romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].as
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
 
-st.dataframe(x_loc_new)
+st.dataframe(lokasi)
 
 col1, col2 = st.columns([1, 12], gap="small")
 

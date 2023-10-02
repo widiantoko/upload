@@ -59,7 +59,7 @@ lokasi['x_loc_new'] = lokasi['set_loc'].str[:5]
 lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
 
-st.dataframe(romox)
+
 
 
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
@@ -112,7 +112,7 @@ romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].as
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
 
-
+st.dataframe(romox_join)
 
 col1, col2 = st.columns([1, 12], gap="small")
 

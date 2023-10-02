@@ -54,7 +54,7 @@ loc_all_new=[x+"."+y for (x, y) in dpn_tgh_blk]
 
 lokasi=pd.DataFrame(loc_all_new, columns=["set_loc"])
 lokasi['zona'] = lokasi['set_loc'].str[:2]
-lokasi['x_loc'] = lokasi['set_loc'].str[:5]
+lokasi['x_loc_new'] = lokasi['set_loc'].str[:5]
 lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
 

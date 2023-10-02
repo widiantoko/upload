@@ -159,4 +159,4 @@ with col2:
     st.plotly_chart(hm_zona)
 
 
-    st.text("Sumber Data: WMS Romokalisari 23 Agustus 2023")
+    st.text("Sumber Data: WMS Romokalisari 29 September 2023")

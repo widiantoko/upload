@@ -13,14 +13,14 @@ romox = pd.read_excel("data/29_09_23_goodstock.xlsx")
 #romox['c3'] = romox["c3"].apply(str)
 
 
-for i, row in romox.iterrows():
-        hasil2 = ''
-        if len(row['c3']) == 1:
-            hasil2 = "0"+row["c3"]
-        else:
-             hasil2 = row["c3"]
+#for i, row in romox.iterrows():
+ #       hasil2 = ''
+  #      if len(row['c3']) == 1:
+   #         hasil2 = "0"+row["c3"]
+ #       else:
+ #            hasil2 = row["c3"]
         
-        romox.at[i, 'c3'] = hasil2
+ #       romox.at[i, 'c3'] = hasil2
 
 
 lst = []
@@ -59,7 +59,7 @@ lokasi['y_loc'] = lokasi['set_loc'].str[6:8]
 
 
 st.dataframe(romox)
-romox.dtypes()
+
 
 romox_join=pd.merge(lokasi,romox, left_on="set_loc", right_on='loc', how='outer')
 romox_join= romox_join.fillna(value=np.nan)

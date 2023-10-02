@@ -14,14 +14,14 @@ romox['c3'] = romox["c3"].apply(str)
 romox['c3'] = romox['c3'].str.replace('.0','')
 
 
-#for i, row in romox.iterrows():
- #       hasil2 = ''
-  #      if len(row['c3']) == 1:
-   #         hasil2 = "0"+row["c3"]
- #       else:
- #            hasil2 = row["c3"]
+for i, row in romox.iterrows():
+        hasil2 = ''
+        if len(row['c3']) == 1:
+            hasil2 = "0"+row["c3"]
+        else:
+             hasil2 = row["c3"]
         
- #       romox.at[i, 'c3'] = hasil2
+        romox.at[i, 'c3'] = hasil2
 
 
 lst = []

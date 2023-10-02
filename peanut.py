@@ -10,7 +10,9 @@ st.set_page_config(page_title="Romokalisari", layout='wide')
 
 
 romox = pd.read_excel("data/29_09_23_goodstock.xlsx")
-romox["c3"]=str(romox["c3"])
+#romox["c3"]=str(romox["c3"])
+
+romox['c3'] = romox["c3"].map(str)
 
 
 for i, row in romox.iterrows():

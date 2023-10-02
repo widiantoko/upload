@@ -45,7 +45,7 @@ y_loc=sorted(set(romox["c4"]))
 
 
 dpn_tgh=[(a, b) for a in dpn for b in tgh]
-x_loc_new=[x+y for (x, y) in dpn_tgh]
+x_loc_new=[x+"."+y for (x, y) in dpn_tgh]
 
 
 dpn_tgh_blk=[(a, b) for a in x_loc_new for b in y_loc]

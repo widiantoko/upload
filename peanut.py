@@ -103,6 +103,9 @@ for i, row in romox_join.iterrows():
 
 
 
+
+import numpy as np
+import pandas as pd
 import pandas_bokeh
 from math import pi
 pandas_bokeh.output_notebook()

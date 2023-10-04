@@ -138,7 +138,7 @@ p = figure(plot_height=300, plot_width=400, title="Detail Komposisi Resin Romoka
 
 p.annular_wedge(x=0, y=1,  inner_radius=0.1, outer_radius=0.3, direction="anticlock", 
         start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
-        line_color="white", fill_color='color', legend='item', source=rkp_bag)
+        line_color=None, fill_color='color', legend='item', source=rkp_bag)
 
        
         

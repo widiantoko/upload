@@ -3,6 +3,17 @@ import streamlit as st
 
 import plotly.graph_objects as go
 import numpy as np
+from bokeh.plotting import figure
+from bokeh.transform import cumsum
+
+
+import pandas_bokeh 
+pandas_bokeh.output_notebook()
+
+from math import pi
+
+        
+
 
 st.set_page_config(page_title="Romokalisari", layout='wide')
 
@@ -104,14 +115,6 @@ for i, row in romox_join.iterrows():
 
 
 
-import numpy as np
-import pandas as pd
-import pandas_bokeh 
-pandas_bokeh.output_notebook()
-
-from math import pi
-from bokeh.plotting import figure
-from bokeh.transform import cumsum
 
 
 romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)

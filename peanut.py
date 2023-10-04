@@ -125,7 +125,7 @@ pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
 gs=int(romox_join['qtybag'].sum())
 
-tot_bag = [['good_stock', gs, '#ef9a9a'], ['bad_stock', 318, '#90caf9' ]]
+tot_bag = [['good_stock', gs, '#90caf9' ], ['bad_stock', 318,  '#ef9a9a' ]]
 rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty', 'color'])
 rkp_bag['angle'] = rkp_bag['qty']/rkp_bag['qty'].sum() * 2*pi
 
@@ -134,7 +134,7 @@ rkp_bag['value']=100*(rkp_bag['qty']/rkp_bag['qty'].sum())
 
 
 p = figure(plot_height=600, title="Detail Komposisi Resin Romokalisari", toolbar_location="above",
-           tools="hover", tooltips="@pengirim: @count1{0.2f} %", x_range=(-.5, .5))
+           tools="hover", tooltips="@item: @qty{0.2f} %", x_range=(-.5, .5))
 
 p.annular_wedge(x=0, y=1,  inner_radius=0.18, outer_radius=0.35, direction="anticlock", 
         start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
@@ -154,7 +154,7 @@ st.bokeh_chart(p)
 
 
 
-st.dataframe(rkp_bag)
+#st.dataframe(rkp_bag)
 
 col1, col2 = st.columns([1, 12], gap="small")
 

@@ -102,7 +102,7 @@ for i, row in romox_join.iterrows():
         romox_join.at[i, 'Z_value'] = hasil1
 
 
-
+from math import pi
 
 romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)
 
@@ -114,6 +114,7 @@ gs=int(romox_join['qtybag'].sum())
 
 tot_bag = [['good_stock', gs, '#ef9a9a'], ['bad_stock', 318, '#90caf9' ]]
 rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty', 'color'])
+rkp_bag['angle'] = rkp_bag['qty']/rkp_bag['qty'].sum() * 2*pi
 st.dataframe(rkp_bag)
 
 col1, col2 = st.columns([1, 12], gap="small")

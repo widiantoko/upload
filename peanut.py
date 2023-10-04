@@ -103,6 +103,8 @@ for i, row in romox_join.iterrows():
 
 
 from math import pi
+import pandas_bokeh
+pandas_bokeh.output_notebook()
 from bokeh.plotting import figure
 from bokeh.transform import cumsum
 

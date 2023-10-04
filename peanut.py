@@ -133,7 +133,7 @@ rkp_bag['value']=100*(rkp_bag['qty']/rkp_bag['qty'].sum())
 
 
 
-p = figure(plot_height=200, title="Detail Komposisi Resin Romokalisari", toolbar_location="above",
+p = figure(plot_height=300, plot_width=200, title="Detail Komposisi Resin Romokalisari", toolbar_location="above",
            tools="hover", tooltips="@item: @qty", x_range=(-.5, .5))
 
 p.annular_wedge(x=0, y=1,  inner_radius=0.1, outer_radius=0.3, direction="anticlock", 

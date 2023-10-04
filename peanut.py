@@ -116,8 +116,7 @@ tot_bag = [['good_stock', gs, '#ef9a9a'], ['bad_stock', 318, '#90caf9' ]]
 rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty', 'color'])
 rkp_bag['angle'] = rkp_bag['qty']/rkp_bag['qty'].sum() * 2*pi
 
-value=100*(rkp_bag['qty']/rkp_bag['qty'].sum())
-rkp_bag['value']=value
+rkp_bag['value']=100*(rkp_bag['qty']/rkp_bag['qty'].sum())
 
 
 st.dataframe(rkp_bag)

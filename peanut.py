@@ -112,8 +112,8 @@ pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
 gs=int(romox_join['qtybag'].sum())
 
-tot_bag = [['good_stock', gs], ['bad_stock', 318]]
-rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty'])
+tot_bag = [['good_stock', gs, '#ef9a9a'], ['bad_stock', 318, '#90caf9' ]]
+rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty', 'color'])
 st.dataframe(rkp_bag)
 
 col1, col2 = st.columns([1, 12], gap="small")

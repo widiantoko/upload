@@ -111,6 +111,7 @@ pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
 
 #st.dataframe(romox_join)
+st.metric(int(romox_join['qtybag'].sum()))
 
 col1, col2 = st.columns([1, 12], gap="small")
 

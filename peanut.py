@@ -110,13 +110,11 @@ romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].as
 pilih_zona=romox_join['zona'].drop_duplicates().sort_index(ascending=True)
 
 
-
 gs=int(romox_join['qtybag'].sum())
 
-
-rekap_bag = [['good_stock', gs], ['bad_stock', 318]]
-#df_rkp_bag = pd.DataFrame(rekap_bag, columns=['item', 'qty'])
-st.dataframe(rekap_bag)
+tot_bag = [['good_stock', gs], ['bad_stock', 318]]
+rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty'])
+st.dataframe(rkp_bag)
 
 col1, col2 = st.columns([1, 12], gap="small")
 

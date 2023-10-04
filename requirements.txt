@@ -86,3 +86,5 @@ validators==0.21.2
 wcwidth==0.2.6
 xlrd==2.0.1
 zipp==3.16.2
+pandas-bokeh==0.5.5
+bokeh==2.4.3

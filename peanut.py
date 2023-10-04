@@ -103,6 +103,9 @@ for i, row in romox_join.iterrows():
 
 
 from math import pi
+from bokeh.plotting import figure
+from bokeh.transform import cumsum
+
 
 romox_join["con"] = romox_join['grup'].astype(str)+" : " +romox_join['lotno'].astype(str)
 
@@ -117,6 +120,28 @@ rkp_bag = pd.DataFrame(tot_bag, columns=['item', 'qty', 'color'])
 rkp_bag['angle'] = rkp_bag['qty']/rkp_bag['qty'].sum() * 2*pi
 
 rkp_bag['value']=100*(rkp_bag['qty']/rkp_bag['qty'].sum())
+
+
+
+p = figure(plot_height=600, title="Detail Komposisi Resin Romokalisari", toolbar_location="above",
+           tools="hover", tooltips="@pengirim: @count1{0.2f} %", x_range=(-.5, .5))
+
+p.annular_wedge(x=0, y=1,  inner_radius=0.18, outer_radius=0.35, direction="anticlock", 
+        start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+        line_color="white", fill_color='color', legend="legend", source=rkp_bag)
+
+       
+        
+       
+
+p.axis.axis_label=None
+p.axis.visible=False
+p.grid.grid_line_color = None
+p.legend.location = "center"
+p.add_layout(p.legend[0], 'right')
+
+st.bokeh_chart(p)
+
 
 
 st.dataframe(rkp_bag)
